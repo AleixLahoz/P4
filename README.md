@@ -102,12 +102,14 @@ Finalment constrium la matriu guardant-la en l'outputfile.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   * ¿Por qué es conveniente usar este formato (u otro parecido)?
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
 	Considerem que és un format que ofereix molts avantatges a l'hora de treballar. Primer perquè ens permet estructurar
 	de manera molt clara els coeficients o features calculats, separant-los per cada trama. Així doncs, facilita molt 
 	l'análisi dels coeficients obtinguts, permetent, per exemple, generar qualsevol tipus de gràfic (Matlab, Python) sense
 	gaires esforços.
 	
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
