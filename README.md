@@ -93,10 +93,10 @@ cat $base.lp >> $outputfile
 Primerament executem totes les comandes necessaries per a generar el fitxer $base.lp, que incloura els coeficients
 LPC calculats.
 
-Seguidament, tindrem en aquest fitxer, una columna per a cada coeficient, més una columna extra on indiquem el guany
-utilitzat en el factor de guany del predictor lineal. D'altra banda, indiquem que volem tantes files com trames de la 
-senyal haguem generat, i guardarem el valor dels coeficients com en format float ASCII (+fa). Per a calcular el nºfiles
-s'utilitza la comanda wc -l.
+Seguidament, tindrem en aquest fitxer, una columna per a cada coeficient, més una columna extra on 
+indiquem el guany utilitzat en el factor de guany del predictor lineal. D'altra banda, indiquem que 
+volem tantes files com trames de la senyal haguem generat, i guardarem el valor dels coeficients com 
+en format float ASCII (+fa). Per a calcular el nºfiles s'utilitza la comanda wc -l.
 
 Finalment constrium la matriu guardant-la en l'outputfile.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -104,10 +104,10 @@ Finalment constrium la matriu guardant-la en l'outputfile.
   * ¿Por qué es conveniente usar este formato (u otro parecido)?
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
-	Considerem que és un format que ofereix molts avantatges a l'hora de treballar. Primer perquè ens permet estructurar
-	de manera molt clara els coeficients o features calculats, separant-los per cada trama. Així doncs, facilita molt 
-	l'análisi dels coeficients obtinguts, permetent, per exemple, generar qualsevol tipus de gràfic (Matlab, Python) sense
-	gaires esforços.
+Considerem que és un format que ofereix molts avantatges a l'hora de treballar. Primer perquè ens 
+permet estructurar de manera molt clara els coeficients o features calculats, separant-los per 
+cada trama. Així doncs, facilita molt l'análisi dels coeficients obtinguts, permetent, per exemple,
+generar qualsevol tipus de gràfic (Matlab, Python) sense gaires esforços.
 	
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
