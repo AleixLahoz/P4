@@ -211,10 +211,10 @@ end
 hold off;
 ```
 
-<img src="img/lp.jpg" width="350" align="left">
-<img src="img/lp45.jpg" width="350" align="center">
-<img src="img/lpcc.jpg" width="350" align="left">
-<img src="img/mfcc.jpg" width="350" align="center">
+<img src="img/lp.jpg" width="400" align="left">
+<img src="img/lp45.jpg" width="400" align="center">
+<img src="img/lpcc.jpg" width="400" align="left">
+<img src="img/mfcc.jpg" width="400" align="center">
 
 
 
