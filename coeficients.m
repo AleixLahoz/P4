@@ -1,7 +1,7 @@
 close all;
 
 %  Obrim els fitxers
-fileLPC = fopen('lp_2_3.txt', 'r');
+fileLPC = fopen('lp_1_2.txt', 'r');
 fileLPCC = fopen('lpcc_2_3.txt', 'r');
 fileMFCC = fopen('mfcc_2_3.txt', 'r');
 
@@ -41,8 +41,8 @@ hold off;
 
 
 figure;
-xlabel('C2');
-ylabel('C3');
+xlabel('C1');
+ylabel('C2');
 grid on;
 title('LPC Coeficients')
 hold on;
