@@ -211,9 +211,9 @@ end
 hold off;
 ```
 
-<img src="img/lp.jpg" width="200" align="left">
-<img src="img/lpcc.png" width="200" align="center">
-<img src="img/mfcc.png" width="200" align="right">
+<img src="img/lp.jpg" width="250" align="left">
+<img src="img/lpcc.jpg" width="250" align="center">
+<img src="img/mfcc.jpg" width="250" align="right">
 
   + ¿Cuál de ellas le parece que contiene más información?
 
