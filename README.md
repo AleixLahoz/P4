@@ -215,6 +215,8 @@ hold off;
 <img src="img/lpcc.jpg" width="250" align="center">
 <img src="img/mfcc.jpg" width="250" align="right">
 
+
+
   + ¿Cuál de ellas le parece que contiene más información?
 
 - Usando el programa <code>pearson</code>, obtenga los coeficientes de correlación normalizada entre los
