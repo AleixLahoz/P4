@@ -92,7 +92,7 @@ def limsGMM(means, covs, fStd=3):
 
     return min_, max_
 
-def plotGMM(fileGMM, xDim, yDim, percents, colorGmm, filesFeat=None, colorFeat=None, limits=None, subplot=111):
+def plotGMM(fileGMM, filesFeat, subplot, xDim, yDim, percents, colorGmm, colorFeat=None, limits=None):
     weights, means, covs = read_gmm(fileGMM)
 
     ax = plt.subplot(subplot)
@@ -154,7 +154,7 @@ USAGE='''
 Draws the regions in space covered with a certain probability by a GMM.
 
 Usage:
-    plotGMM [--help|-h] [options] <file-gmm> [<file-feat>...]
+    plotGMM [--help|-h] [options] <file-gmm1> [<file-feat1>] [<file-gmm2>] [<file-feat2>]
 
 Options:
     --yDim INT, -x INT               'x' dimension to use from GMM and feature vectors [default: 0]
@@ -167,15 +167,19 @@ Options:
     --help, -h                        Shows this message
 
 Arguments:
-    <file-gmm>    File with the Gaussian mixture model to be plotted
-    <file-fear>   Feature files to be plotted along the GMM
+    <file-gmm1>    File with the Gaussian mixture model to be plotted
+    <file-feat1>   Feature files to be plotted along the GMM
+    <file-gmm2>    File with the Gaussian mixture model to be plotted
+    <file-feat2>   Feature files to be plotted along the GMM
 '''
 
 if __name__ == '__main__':
     args = docopt(USAGE)
 
-    fileGMM = args['<file-gmm>']
-    filesFeat = args['<file-feat>']
+    fileGMM1 = args['<file-gmm1>']
+    filesFeat1 = args['<file-feat1>']   
+    fileGMM2 = args['<file-gmm2>']
+    filesFeat2 = args['<file-feat2>']
     xDim = int(args['--xDim'])
     yDim = int(args['--yDim'])
     percents = args['--percents']
@@ -193,4 +197,9 @@ if __name__ == '__main__':
     else:
         limits = None
 
-    plotGMM(fileGMM, xDim, yDim, percents, colorGmm, filesFeat, colorFeat, limits, 111)
+    plotGMM(fileGMM1, filesFeat1, 221, xDim, yDim, percents, colorGmm, colorFeat, limits)    
+    plotGMM(fileGMM2, filesFeat2, 222, xDim, yDim, percents, colorGmm,  colorFeat, limits)
+    #plotGMM(fileGMM1, xDim, yDim, percents, colorGmm, filesFeat2, colorFeat, limits, 223)
+    #plotGMM(fileGMM2, xDim, yDim, percents, colorGmm, filesFeat2, colorFeat, limits, 224)
+
+

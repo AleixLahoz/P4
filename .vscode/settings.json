@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "bitset": "cpp",
+        "algorithm": "cpp",
+        "fstream": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "regex": "cpp"
+    },
+    "python.pythonPath": "/usr/bin/python3",
+    "[jsonc]": {
+    
+    },
+    "launch": {
+    
+    
+    }
+}

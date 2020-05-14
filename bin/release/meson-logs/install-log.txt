@@ -1,0 +1,10 @@
+# List of files installed by Meson
+# Does not contain files installed by custom scripts.
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/lib/libpav.a
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/bin/gmm_classify
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/bin/gmm_show
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/bin/gmm_train
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/bin/gmm_verify
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/bin/pearson
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/bin/fmatrix_cut
+/mnt/c/Users/aleix/OneDrive/Escritorio/PAV/bin/fmatrix_show

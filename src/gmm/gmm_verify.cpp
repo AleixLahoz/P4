@@ -32,6 +32,8 @@ float verify(const GMM &gmm_candidate, const fmatrix &dat) {
    */
 
   float score = 0.0F;
+  score =  gmm_candidate.logprob(dat); ; 
+
   return score;
 }
 
@@ -45,7 +47,10 @@ float verify(const GMM &gmm_candidate, const GMM & gmm_world, const fmatrix &dat
   lprobcand = 0.0F;
   lprobbackground = 0.0F;
 
-
+  lprobcand=gmm_candidate.logprob(dat); 
+  lprobbackground = gmm_world.logprob(dat); 
+  score = lprobcand - lprobbackground;   
+  
   return score;
 
 }
