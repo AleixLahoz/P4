@@ -243,7 +243,7 @@ pearson work/mfcc/BLOCK00/SES000/SA000S*.mfcc
 Abans de tot, consultem que volen dir els resultats proporcionats pel programa pearson, i observem que proporciona
 un valor que serveix per a medir la correlació entre els coeficients, de la manera següent:
 
-  <img src="img/pearson.jpg" width="720" align="center">
+  <img src="img/pearson.png" width="720" align="center">
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
 Per tant, observem que els resultats de les gràfiques de matlab concorden amb els que ens proporciona el programa pearson:
