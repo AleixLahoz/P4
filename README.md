@@ -216,19 +216,44 @@ hold off;
 <img src="img/lpcc.jpg" width="400" align="left">
 <img src="img/mfcc.jpg" width="400" align="center">
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+Observem que en el cas de les correlacions LP dels coeficients 2 i 3, obtenim una
+gràfica una mica peculiar, fet que no passa si comparem els coeficients 4 i 5
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   + ¿Cuál de ellas le parece que contiene más información?
 
 - Usando el programa <code>pearson</code>, obtenga los coeficientes de correlación normalizada entre los
   parámetros 2 y 3, y rellene la tabla siguiente con los valores obtenidos.
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+Executem, per exemple:
+
+pearson work/lp/BLOCK00/SES000/SA000S*.lp
+pearson work/lpcc/BLOCK00/SES000/SA000S*.lpcc
+pearson work/mfcc/BLOCK00/SES000/SA000S*.mfcc
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   |                        | LP   | LPCC | MFCC |
   |------------------------|:----:|:----:|:----:|
-  | &rho;<sub>x</sub>[2,3] |      |      |      |
+  | &rho;<sub>x</sub>[2,3] |-0.809|0.215 | 0.03 |
   
   + Compare los resultados de <code>pearson</code> con los obtenidos gráficamente.
-  
+
+Abans de tot, consultem que volen dir els resultats proporcionats pel programa pearson, i observem que proporciona
+un valor que serveix per a medir la correlació entre els coeficients, de la manera següent:
+
+  <img src="img/pearson.jpg" width="720" align="center">
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+Per tant, observem que els resultats de les gràfiques de matlab concorden amb els que ens proporciona el programa pearson:
+	- LPC: En la gràfica dels coeficients 4 i 5, observem que estan força alineats, formant una gràfica de pendent negatiu,
+		per tant, té sentit obtenir valors que estiguin al voltant del -0.8
+	- LPCC: Observem una gràfica formada per dues agrupacions, sense gaire correlació, per tant, te sentit obtenir un valor 
+		molt inferior al del LPC, de 0.215
+	- MFCC: Observem que els valors no estan gens correlats, per tant, concorda amb el valor de 0.03 que ens proporciona pearson.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 - Según la teoría, ¿qué parámetros considera adecuados para el cálculo de los coeficientes LPCC y MFCC?
 
 ### Entrenamiento y visualización de los GMM.
