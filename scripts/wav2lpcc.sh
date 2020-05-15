@@ -42,8 +42,8 @@ else
 fi
 
 # Main command for feature extration
-sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 160 -p 80 | $WINDOW -l 160 |
-	$LPC -l 160 -m $lpc_order | $LPC2C -m $lpc_order -M $lpcc_order> $base.lpcc
+sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 184 -p 104 | $WINDOW -l 184 |
+	$LPC -l 184 -m $lpc_order | $LPC2C -m $lpc_order -M $lpcc_order> $base.lpcc
 
 # Our array files need a header with the number of cols and rows:
 ncol=$((lpcc_order+1)) # lpcc p =>  (gain c1 c2 ... cp) 

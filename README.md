@@ -252,9 +252,31 @@ Per tant, observem que els resultats de les gràfiques de matlab concorden amb e
 	- LPCC: Observem una gràfica formada per dues agrupacions, sense gaire correlació, per tant, te sentit obtenir un valor 
 		molt inferior al del LPC, de 0.215
 	- MFCC: Observem que els valors no estan gens correlats, per tant, concorda amb el valor de 0.03 que ens proporciona pearson.
+
+Com a conclusió, podem extreure que els coeficients que ofereixen més informació són els MFCC, degut a la baixa correlació que presenten. Per
+contra, observem com l'alta correlació que presenten els LP ens inidica que només obtenint un baix nombre de coeficients, ja en seriem capços de
+predir-ne els altres, i per tant no seria eficient triar un alt nombre de coeficients.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Según la teoría, ¿qué parámetros considera adecuados para el cálculo de los coeficientes LPCC y MFCC?
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.sh
+* LPCC:
+  Linear Prediction Cepstral Coeficients són els coeficients cepstrals que s'obtenen
+  a partir de la Linear Prediction Coding utilitzada per calcular l'envolupant
+  espectral. La teoría recomana utilitzar una predicció P d'ordre 12 i
+  aproximadament Q=(3/2)P coeficients cepstrals. Pel que fa a la longitud de les
+  trames i al solapament, es recomana utilitzar de 20-30ms i 10-15ms respectivament.
+
+  * MFCC:
+  Els Mel Frequency Cepstral Coeficients s'obtenen a partir de realitzar l'analisis
+  cepstral en un banc de filtres Mel, que tenen com a objectiu replicar l'oïda
+  humana, i seguidament s'aplica la DCT a la sortida de cada un dels filtres.
+  Per speech recognition es recomana utilitzar els primers Q=13 coeficients, i pel
+  que fa als filtres, es recomana utilitzar entre 24 i 40 filtres. Els parametres
+  temporals són els mateixos que en el LPCC.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Entrenamiento y visualización de los GMM.
 
@@ -262,10 +284,18 @@ Complete el código necesario para entrenar modelos GMM.
 
 - Inserte una gráfica que muestre la función de densidad de probabilidad modelada por el GMM de un locutor
   para sus dos primeros coeficientes de MFCC.
+
+  <img src="img/gaus1.png" width="720" align="center">
   
 - Inserte una gráfica que permita comparar los modelos y poblaciones de dos locutores distintos (la gŕafica
   de la página 20 del enunciado puede servirle de referencia del resultado deseado). Analice la capacidad
   del modelado GMM para diferenciar las señales de uno y otro.
+
+  <img src="img/gaus2.png" width="720" align="center">
+
+Observem que quan la massa de la població representada no coincideix amb el modelat GMM del locutor, les 
+regions de les GMM no coincideixen amb les zones amb més densitat de mostres. Per tant, podem veure com resultaria
+útil de cara a determinar si l'usuari es legítim o es tracta d'un impostor.
 
 ### Reconocimiento del locutor.
 
