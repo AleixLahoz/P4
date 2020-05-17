@@ -306,24 +306,24 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
 
   * LP:
 
-    **Longitud de la trama: 184 mostres / 23 ms
-    **Desplaçament de la finestra: 104 mostres / 13 ms
-    **Ordre de predicció: 13
-    **Error: 1e-6
-    **Mètode: VQ
-    **Iteracions: 80
-    **Numero de gaussianes: 48 
+    Longitud de la trama: 184 mostres / 23 ms <br/>
+    Desplaçament de la finestra: 104 mostres / 13 ms <br/>
+    Ordre de predicció: 13 <br/>
+    Error: 1e-6 <br/>
+    Mètode: VQ <br/>
+    Iteracions: 80 <br/>
+    Numero de gaussianes: 48 <br/>
 
   * LPCC:
 
-    Longitud de la trama: 184 mostres / 23 ms
-    Desplaçament de la finestra: 104 mostres / 13 ms
-    Ordre de predicció: 13
-    Número de coeficients: 12
-    Error: 1e-6
-    Mètode: VQ
-    Iteracions: 80
-    Numero de gaussianes: 48
+    Longitud de la trama: 184 mostres / 23 ms <br/>
+    Desplaçament de la finestra: 104 mostres / 13 ms <br/>
+    Ordre de predicció: 13 <br/>
+    Número de coeficients: 12 <br/>
+    Error: 1e-6 <br/>
+    Mètode: VQ <br/>
+    Iteracions: 80 <br/>
+    Numero de gaussianes: 48 <br/>
 
   * MFCC:
 
