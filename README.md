@@ -353,13 +353,13 @@ Complete el código necesario para realizar verificación del locutor y optimice
  
 
   * MFCC:
-    Longitud de la trama: 184
-    Desplaçament de la finestra: 106
-    Número de coeficients: 13
-    Error: 1e-6
-    Mètode: VQ
-    Iteracions: 80
-    Numero de gaussianes: 48
+    Longitud de la trama: 184 <br/>
+    Desplaçament de la finestra: 106 <br/>
+    Número de coeficients: 13 <br/>
+    Error: 1e-6 <br/>
+    Mètode: VQ <br/>
+    Iteracions: 80 <br/>
+    Numero de gaussianes: 48 <br/>
 
 
   | Cost detection |     Threshold      | False Alarm | Missed |
