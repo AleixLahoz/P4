@@ -21,3 +21,15 @@
 16	2516	1589736033	src/pav/pav@sta/gmm.cpp.o	f1ef2981fdf5edeb
 47	17485	1589713667	src/pav/pav@sta/docopt_cpp_docopt.cpp.o	1ec0653157fc7fb6
 38	3433	1589713653	src/pav/pav@sta/gmm_vq.cpp.o	68f31f9b37a31903
+15	52	1589736207	scripts/run_spkid	b35a89442ed02669
+19	55	1589194216	scripts/plot_gmm_feat	7db0a991876c47ff
+23	56	1589737391	scripts/plot_gmm_feat_2	fccbd8a3090a27d2
+27	57	1589022954	scripts/spk_verif_score	7237abf9cf7a373c
+30	58	1589544665	scripts/wav2lp	a4b778d01660960f
+35	58	1589735865	scripts/wav2lpcc	3fdb6a4051dead4
+39	59	1589735870	scripts/wav2mfcc	74a3ccf507f84e59
+42	59	1589022954	pav_spkid_pytorch/make_spk2idx	2da7c3f8b6c9e07c
+45	64	1589022954	pav_spkid_pytorch/test_nn	ed974abf05d4e1ba
+49	65	1589022954	pav_spkid_pytorch/train_nn	213c8b8df0e1051e
+53	66	1589022954	pav_spkid_pytorch/utils	77990532520ce5ee
+66	978	0	meson-install	c57ca325aa5e5dd0

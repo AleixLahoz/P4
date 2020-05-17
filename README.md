@@ -327,13 +327,14 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
 
   * MFCC:
 
-    Longitud de la trama: 184
-    Desplaçament de la finestra: 104 
-    Número de coeficients: 13
-    Error: 1e-6
-    Mètode: VQ
-    Iteracions: 80
-    Numero de gaussianes: 48 
+    Longitud de la trama: 184 mostres / 23 ms  <br/>
+    Desplaçament de la finestra: 104 mostres / 13 ms  <br/>
+    Número de coeficients: 13 <br/>
+    Número de filtres: 20 (default)
+    Error: 1e-6 <br/>
+    Mètode: VQ <br/>
+    Iteracions: 80 <br/>
+    Numero de gaussianes: 48 <br/>
 
 
   |                   |  LP  | LPCC | MFCC |
