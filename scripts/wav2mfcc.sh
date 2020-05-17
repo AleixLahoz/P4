@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## \file
-## \TODO This file implements a very trivial feature extraction; use it as a template for other front ends.
+## \DONE This file implements a very trivial feature extraction; use it as a template for other front ends.
 ## 
 ## Please, read SPTK documentation and some papers in order to implement more advanced front ends.
 
@@ -39,7 +39,7 @@ else
 fi
 
 # Main command for feature extration
-sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 184 -p 104| $WINDOW -l 184 |
+sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 184 -p 106| $WINDOW -l 184 |
 	$MFCC -l 184 -m $mfcc_order > $base.mfcc
 
 # Our array files need a header with the number of cols and rows:

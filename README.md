@@ -304,6 +304,40 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
 - Inserte una tabla con la tasa de error obtenida en el reconocimiento de los locutores de la base de datos
   SPEECON usando su mejor sistema de reconocimiento para los parámetros LP, LPCC y MFCC.
 
+  * LP:
+    Longitud de la trama: 184 mostres / 23 ms
+    Desplaçament de la finestra: 104 mostres / 13 ms
+    Ordre de predicció: 13
+    Error: 1e-6
+    Mètode: VQ
+    Iteracions: 80
+    Numero de gaussianes: 48 
+
+  * LPCC:
+    Longitud de la trama: 184 mostres / 23 ms
+    Desplaçament de la finestra: 104 mostres / 13 ms
+    Ordre de predicció: 13
+    Número de coeficients: 12
+    Error: 1e-6
+    Mètode: VQ
+    Iteracions: 80
+    Numero de gaussianes: 48
+
+  * MFCC:
+    Longitud de la trama: 184
+    Desplaçament de la finestra: 104 
+    Número de coeficients: 13
+    Error: 1e-6
+    Mètode: VQ
+    Iteracions: 80
+    Numero de gaussianes: 48 
+
+
+  |                   |  LP  | LPCC | MFCC |
+  |-------------------|:----:|:----:|:----:|
+  | Tassa d'error (%) | 10,45| 1,66 | 1,02 |
+
+
 ### Verificación del locutor.
 
 Complete el código necesario para realizar verificación del locutor y optimice sus parámetros.
@@ -313,6 +347,28 @@ Complete el código necesario para realizar verificación del locutor y optimice
   pérdidas, y el score obtenido usando la parametrización que mejor resultado le hubiera dado en la tarea
   de reconocimiento.
  
+
+  * MFCC:
+    Longitud de la trama: 184
+    Desplaçament de la finestra: 106
+    Número de coeficients: 13
+    Error: 1e-6
+    Mètode: VQ
+    Iteracions: 80
+    Numero de gaussianes: 48
+
+
+  | Cost detection |     Threshold      | False Alarm | Missed |
+  |----------------|:------------------:|:-----------:|:------:|
+  |      16.0      |  0.597677279929694 |      0      |    40  |
+
+
+'PARÀMETRES PEL TRAIN WORLD:'
+
+       gmm_train -v 1 -T 1e-4 -m 64 -i 1 -d $w/$FEAT -e $FEAT -g $w/gmm/$FEAT/mundo.gmm $lists/verif/others.train  || exit 1
+
+
+
 ### Test final y trabajo de ampliación.
 
 - Recuerde adjuntar los ficheros `class_test.log` y `verif_test.log` correspondientes a la evaluación

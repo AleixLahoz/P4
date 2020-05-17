@@ -1,14 +1,14 @@
 #! /usr/bin/python3 -u
 
+import glob
 import struct
-
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-import numpy as np
 from matplotlib.colors import LogNorm
-from scipy.stats import multivariate_normal as gauss
-
 from docopt import docopt
-
+import numpy as np
+from scipy.stats import multivariate_normal as gauss
 
 def read_gmm(fileGMM):
     '''
@@ -40,6 +40,7 @@ def read_gmm(fileGMM):
             return weights, means, covs
     except:
         raise Exception(f'Error al leer el fichero {fileGMM}')
+
 
 def read_fmatrix(fileFM):
     '''
@@ -92,58 +93,127 @@ def limsGMM(means, covs, fStd=3):
 
     return min_, max_
 
-def plotGMM(fileGMM, filesFeat, subplot, xDim, yDim, percents, colorGmm, colorFeat=None, limits=None):
-    weights, means, covs = read_gmm(fileGMM)
+def plotGMM(fileGMM1, fileGMM2, xDim, yDim, percents, colorGmm, colorFeat=None, limits=None):
+    weights1, means1, covs1 = read_gmm(fileGMM1)
+    weights2, means2, covs2 = read_gmm(fileGMM2)
+    fig, ax = plt.subplots(2, 2)
 
-    ax = plt.subplot(subplot)
-    if filesFeat:
-        feats = np.ndarray((0, 2))
-        for fileFeat in filesFeat:
-            feat = read_fmatrix(fileFeat)
-            feat = np.stack((feat[..., xDim], feat[..., yDim]), axis=-1)
-            feats = np.concatenate((feats, feat))
+    feats1 = np.ndarray((0,2))
+    for fileFeat1 in glob.iglob('work/mfcc/BLOCK00/SES002/*.mfcc'):
+        feat1 = read_fmatrix(fileFeat1)
+        feat1 = np.stack((feat1[..., xDim], feat1[..., yDim]), axis=-1)
+        feats1 = np.concatenate((feats1, feat1))
 
-        ax.scatter(feats[:, 0], feats[:, 1], .05, color=colorFeat)
+    ax[0,0].scatter(feats1[:, 0], feats1[:, 1], .05, color='darkviolet')
+    ax[1,0].scatter(feats1[:, 0], feats1[:, 1], .05, color='darkviolet')
 
-    means = np.stack((means[..., xDim], means[..., yDim]), axis=-1)
-    covs = np.stack((covs[..., xDim], covs[..., yDim]), axis=-1)
+
+    feats2 = np.ndarray((0, 2))
+    for fileFeat2 in glob.iglob('work/mfcc/BLOCK00/SES001/*.mfcc'):
+            feat2 = read_fmatrix(fileFeat2)
+            feat2 = np.stack((feat2[..., xDim], feat2[..., yDim]), axis=-1)
+            feats2 = np.concatenate((feats2, feat2))
+
+    ax[0,1].scatter(feats2[:, 0], feats2[:, 1], .05, color='limegreen')
+    ax[1,1].scatter(feats2[:, 0], feats2[:, 1], .05, color='limegreen')
+
+    means1 = np.stack((means1[..., xDim], means1[..., yDim]), axis=-1)
+    covs1 = np.stack((covs1[..., xDim], covs1[..., yDim]), axis=-1)
+
+    means2 = np.stack((means2[..., xDim], means2[..., yDim]), axis=-1)
+    covs2 = np.stack((covs2[..., xDim], covs2[..., yDim]), axis=-1)
 
     if not limits:
-        min_, max_ = limsGMM(means, covs)
-        limits = (min_[0], max_[0], min_[1], max_[1])
+        min_1, max_1 = limsGMM(means1, covs1)
+        limits1 = (min_1[0], max_1[0], min_1[1], max_1[1])
+        min_2, max_2 = limsGMM(means2, covs2)
+        limits2 = (min_2[0], max_2[0], min_2[1], max_2[1])
     else:
         min_, max_ = (limits[0], limits[2]), (limits[1], limits[3])
+
+
 
     # Fijamos el número de muestras de manera que el valor esperado de muestras
     # en el percentil más estrecho sea 1000. Calculamos el más estrecho como el
     # valor mínimo de p*(1-p)
 
-    numSmp = int(np.ceil(np.max(1000 / (percents * (1 - percents))) ** 0.5 ))
+    numSmp = np.ceil(np.max(1000 / (percents * (1 - percents))) ** 0.5)
+    numSmp = int(numSmp);
 
-    x = np.linspace(min_[0], max_[0], numSmp)
-    y = np.linspace(min_[1], max_[1], numSmp)
-    X, Y = np.meshgrid(x, y)
+    x1 = np.linspace(min_1[0], max_1[0], numSmp)
+    x2 = np.linspace(min_2[0], max_2[0], numSmp)
+    y1 = np.linspace(min_1[1], max_1[1], numSmp)
+    y2 = np.linspace(min_2[1], max_2[1], numSmp)
+    X1, Y1 = np.meshgrid(x1, y1)
+    X2, Y2 = np.meshgrid(x2, y2)
 
-    XX = np.array([X.ravel(), Y.ravel()]).T
 
-    Z = pdfGMM(XX, weights, means, covs)
-    Z /= sum(Z)
-    Zsort = np.sort(Z)
-    Zacum = Zsort.cumsum()
-    levels = [Zsort[np.where(Zacum > 1 - percent)[0][0]] for percent in percents]
+    XX1 = np.array([X1.ravel(), Y2.ravel()]).T
+    XX2 = np.array([X2.ravel(), Y2.ravel()]).T
 
-    Z = Z.reshape(X.shape)
+    Z1 = pdfGMM(XX1, weights1, means1, covs1)
+    Z1 /= sum(Z1) #NORMALITZAR LA PDF
+    Zsort1 = np.sort(Z1)
+    Zacum1 = Zsort1.cumsum()
+    levels1 = [Zsort1[np.where(Zacum1 > 1 - percent)[0][0]] for percent in percents]
 
-    style = {'colors': [colorGmm] * len(percents), 'linestyles': ['dotted', 'solid']}
+    Z1 = Z1.reshape(X1.shape)
 
-    CS = ax.contour(X, Y, Z, levels=levels, **style)
-    fmt = {levels[i]: f'{percents[i]:.0%}' for i in range(len(levels))}
-    ax.clabel(CS, inline=1, fontsize=14, fmt=fmt)
+    style = {'colors': ['purple'] * len(percents), 'linestyles': ['-', '-.']}
 
-    plt.title(f'Region coverage predicted by {fileGMM}')
+    CS11 = ax[0,0].contour(X1, Y1, Z1, levels=levels1, **style)
+    CS12 = ax[0,1].contour(X1, Y1, Z1, levels=levels1, **style)
+    fmt = {levels1[i]: f'{percents[i]:.0%}' for i in range(len(levels1))}
+    ax[0,0].clabel(CS11, inline=1, fontsize=14, fmt=fmt)
+    ax[0,1].clabel(CS12, inline=1, fontsize=14, fmt=fmt)
+
+    Z2 = pdfGMM(XX2, weights2, means2, covs2)
+    Z2 /= sum(Z2) #NORMALITZAR LA PDF
+    Zsort2 = np.sort(Z2)
+    Zacum2 = Zsort2.cumsum()
+    levels2 = [Zsort2[np.where(Zacum2 > 1 - percent)[0][0]] for percent in percents]
+
+    Z2 = Z2.reshape(X2.shape)
+
+    style = {'colors': ['seagreen'] * len(percents), 'linestyles': ['-', '-.']}
+
+    CS21 = ax[1,0].contour(X2, Y2, Z2, levels=levels2, **style)
+    CS22 = ax[1,1].contour(X2, Y2, Z2, levels=levels2, **style)
+    fmt = {levels2[i]: f'{percents[i]:.0%}' for i in range(len(levels2))}
+    ax[1,0].clabel(CS21, inline=1, fontsize=14, fmt=fmt)
+    ax[1,1].clabel(CS22, inline=1, fontsize=14, fmt=fmt)
+
+
+    
+    ax[0, 0].set_title(f'GMM: {fileGMM1} Locutor: SES002')
+    ax[0, 1].set_title(f'GMM: {fileGMM1} Locutor: SES001')
+    ax[1, 0].set_title(f'GMM: {fileGMM2} Locutor: SES002')
+    ax[1, 1].set_title(f'GMM: {fileGMM2} Locutor: SES001')
+
     plt.axis('tight')
-    plt.axis(limits)
     plt.show()
+    '''
+    ax[0,0].plt.title(f'GMM: {fileGMM1} Locutor SES002')
+    ax[0,0].plt.axis('tight')
+    ax[0,0].plt.axis(limits)
+    ax[0,0].plt.show()
+
+    ax[0,1].plt.title(f'GMM: {fileGMM1} Locutor SES001')
+    ax[0,1].plt.axis('tight')
+    ax[0,1].plt.axis(limits)
+    ax[0,1].plt.show()
+
+    ax[1,0].plt.title(f'GMM: {fileGMM2} Locutor SES002')
+    ax[1,0].plt.axis('tight')
+    ax[1,0].plt.axis(limits)
+    ax[1,0].plt.show()
+
+    ax[1,0].plt.title(f'GMM: {fileGMM2} Locutor SES001')
+    ax[1,0].plt.axis('tight')
+    ax[1,0].plt.axis(limits)
+    ax[1,0].plt.show()
+'''
+
 
 
 ########################################################################################################
@@ -154,32 +224,28 @@ USAGE='''
 Draws the regions in space covered with a certain probability by a GMM.
 
 Usage:
-    plotGMM [--help|-h] [options] <file-gmm1> [<file-feat1>] [<file-gmm2>] [<file-feat2>]
+    plotGMM [--help|-h] [options] <file-gmm1> <file-gmm2>
 
 Options:
     --yDim INT, -x INT               'x' dimension to use from GMM and feature vectors [default: 0]
     --xDim INT, -y INT               'y' dimension to use from GMM and feature vectors [default: 1]
     --percents FLOAT..., -p FLOAT...  Percentages covered by the regions [default: 90,50]
-    --colorGMM STR, -g STR            Color of the GMM regions boundaries [default: red]
+    --colorGMM STR, -g STR            Color of the GMM regions boundaries [default: green]
     --colorFEAT STR, -f STR           Color of the feature population [default: red]
     --limits xyLimits -l xyLimits     xyLimits are the four values xMin,xMax,yMin,yMax [default: auto]
 
     --help, -h                        Shows this message
 
 Arguments:
-    <file-gmm1>    File with the Gaussian mixture model to be plotted
-    <file-feat1>   Feature files to be plotted along the GMM
-    <file-gmm2>    File with the Gaussian mixture model to be plotted
-    <file-feat2>   Feature files to be plotted along the GMM
+    <file-gmm1>    File with the first Gaussian mixture model to be plotted
+    <file-gmm2>    File with the second Gaussian mixture model to be plotted
 '''
 
 if __name__ == '__main__':
     args = docopt(USAGE)
 
     fileGMM1 = args['<file-gmm1>']
-    filesFeat1 = args['<file-feat1>']   
     fileGMM2 = args['<file-gmm2>']
-    filesFeat2 = args['<file-feat2>']
     xDim = int(args['--xDim'])
     yDim = int(args['--yDim'])
     percents = args['--percents']
@@ -191,15 +257,11 @@ if __name__ == '__main__':
     limits = args['--limits']
     if limits != 'auto':
         limits = [int(limit) for limit in limits.split(',')]
-        if len(limits) is not 4:
+        if len(limits) != 4:
             print('ERROR: xyLimits must be four comma-separated values')
             exit(1)
     else:
         limits = None
 
-    plotGMM(fileGMM1, filesFeat1, 221, xDim, yDim, percents, colorGmm, colorFeat, limits)    
-    plotGMM(fileGMM2, filesFeat2, 222, xDim, yDim, percents, colorGmm,  colorFeat, limits)
-    #plotGMM(fileGMM1, xDim, yDim, percents, colorGmm, filesFeat2, colorFeat, limits, 223)
-    #plotGMM(fileGMM2, xDim, yDim, percents, colorGmm, filesFeat2, colorFeat, limits, 224)
-
+    plotGMM(fileGMM1, fileGMM2, xDim, yDim, percents, colorGmm, colorFeat, limits)
 
