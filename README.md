@@ -305,6 +305,7 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
   SPEECON usando su mejor sistema de reconocimiento para los parámetros LP, LPCC y MFCC.
 
   * LP:
+
     Longitud de la trama: 184 mostres / 23 ms
     Desplaçament de la finestra: 104 mostres / 13 ms
     Ordre de predicció: 13
@@ -314,6 +315,7 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
     Numero de gaussianes: 48 
 
   * LPCC:
+
     Longitud de la trama: 184 mostres / 23 ms
     Desplaçament de la finestra: 104 mostres / 13 ms
     Ordre de predicció: 13
@@ -324,6 +326,7 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
     Numero de gaussianes: 48
 
   * MFCC:
+
     Longitud de la trama: 184
     Desplaçament de la finestra: 104 
     Número de coeficients: 13
@@ -363,7 +366,7 @@ Complete el código necesario para realizar verificación del locutor y optimice
   |      16.0      |  0.597677279929694 |      0      |    40  |
 
 
-'PARÀMETRES PEL TRAIN WORLD:'
+`PARÀMETRES PEL TRAIN WORLD:`
 
        gmm_train -v 1 -T 1e-4 -m 64 -i 1 -d $w/$FEAT -e $FEAT -g $w/gmm/$FEAT/mundo.gmm $lists/verif/others.train  || exit 1
 
